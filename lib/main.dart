@@ -1,8 +1,6 @@
 import 'package:dars_93_uy_ishi/blocs/contacts_bloc/contacts_bloc.dart';
-import 'package:dars_93_uy_ishi/services/contacts_services.dart';
-import 'package:dars_93_uy_ishi/services/message_services.dart';
+import 'package:dars_93_uy_ishi/blocs/messages_bloc/messages_bloc.dart';
 import 'package:dars_93_uy_ishi/ui/screens/contacts_screen.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => ContactsBloc())],
+      providers: [
+        BlocProvider(create: (context) => ContactsBloc()),
+        BlocProvider(create: (context) => MessagesBloc()),
+      
+      ],
       child: MaterialApp(
         home: ContactsScreen(),
       ),

@@ -13,7 +13,7 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
     emit(ContactsLoadingState());
     try {
       final contactsServices = ContactsServices();
-      final contacts = await contactsServices.fetchContacts();
+      List<ContactModel> contacts = await contactsServices.fetchContacts();
       emit(ContactsLoadedState(contacts: contacts));
     } catch (error) {
       emit(ContactsErrorState(error: error.toString()));

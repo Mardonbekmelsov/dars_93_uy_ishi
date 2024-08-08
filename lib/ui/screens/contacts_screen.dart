@@ -2,6 +2,7 @@ import 'package:dars_93_uy_ishi/blocs/contacts_bloc/contacts_bloc.dart';
 import 'package:dars_93_uy_ishi/blocs/contacts_bloc/contacts_event.dart';
 import 'package:dars_93_uy_ishi/blocs/contacts_bloc/contacts_states.dart';
 import 'package:dars_93_uy_ishi/models/contact_model.dart';
+import 'package:dars_93_uy_ishi/ui/screens/messages_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,6 +51,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
               final ContactModel contact = contactsList[index];
               return Container(
                 child: ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MessagesScreen(contact: contact)));
+                  },
                   minLeadingWidth: 70,
                   minTileHeight: 70,
                   leading: Container(
@@ -73,15 +81,16 @@ class _ContactsScreenState extends State<ContactsScreen> {
                             ),
                           ),
                         ),
-                        Positioned(
-                          right: 2,
-                          top: -5,
-                          child: Icon(
-                            Icons.circle,
-                            size: 15,
-                            color: Colors.green,
+                        if (contact.isOnline)
+                          Positioned(
+                            right: 2,
+                            top: -5,
+                            child: Icon(
+                              Icons.circle,
+                              size: 15,
+                              color: Colors.green,
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),
